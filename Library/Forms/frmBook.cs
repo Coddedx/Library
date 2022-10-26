@@ -89,22 +89,6 @@ namespace Library.Forms
         private void btnSearchFilter_Click(object sender, EventArgs e)
         {
             Filter();
-            //List<string> _filter = new List<string> { "Page", "Quote" };
-            //comboBoxFilter.DataSource = _filter;
-
-            //comboBoxFilter.Text = comboBoxFilter.Items[0].ToString();
-
-
-            // string _f = txtFilter.Text;  //text de yazanı listeye koymaya çalıştım
-            //List<int> _f = new List<int>();
-            //_f.Add(int.Parse(txtFilter.Text));
-
-            //DataTable dt = new DataTable();  //Datatable ı yeniden ıluşturup kullanıcam ben
-            //SQLiteDataAdapter adp = new SQLiteDataAdapter(_sql, Connect.connection);  
-            //adp.Fill(dt);
-
-                                       //  DataView dv = a.DefaultView;  //eğer data table ı tekrardan burda oluşturup kullansaydım a yerine dt olurdu
-
         }
 
         public void Filter()
@@ -126,20 +110,45 @@ namespace Library.Forms
             }
 
             List<Book> bo = new List<Book>();
-            string m = comboBoxFilter.Text;
-            //if (comboBoxFilter.Text = 0 )
-            //{
-
-            //}
-            bo = _bookList.FindAll(p => p.Page.Contains(txtFilter.Text)).ToList();
-
-            data_gridBook.DataSource=bo;
-
+            if (comboBoxFilter.SelectedIndex != -1)  //eğer combo filter da seçiliyse içine girdsin yoksa combox u da seç diye uyarı versin      
+            {
+                if (comboBoxFilter.SelectedIndex == 0) //book name
+                {
+                    bo = _bookList.FindAll(p => p.Book_name.Contains(txtFilter.Text)).ToList();
+                    data_gridBook.DataSource = bo;
+                }
+                else if (comboBoxFilter.SelectedIndex == 1) //author name
+                {
+                    bo = _bookList.FindAll(p => p.Author_Name.Contains(txtFilter.Text)).ToList();
+                    data_gridBook.DataSource = bo;
+                }
+                else if (comboBoxFilter.SelectedIndex == 2)  //page
+                {
+                    bo = _bookList.FindAll(p => p.Page.Contains(txtFilter.Text)).ToList();
+                    data_gridBook.DataSource = bo;
+                }
+                else if (comboBoxFilter.SelectedIndex == 3)  //quote
+                {
+                    bo = _bookList.FindAll(p => p.Quote.Contains(txtFilter.Text)).ToList();
+                    data_gridBook.DataSource = bo;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please choose what you are filtering!");
+            }
         }
 
         private void txtFilter_TextChanged(object sender, EventArgs e)
         {
           // Filter();  //burda yaparsam tek bir harf 
+        }
+
+        private void btnClearFilter_Click(object sender, EventArgs e)
+        {
+            txtFilter.Clear();
+            comboBoxFilter.ResetText();
+            UpdateBook();
         }
     }
 }

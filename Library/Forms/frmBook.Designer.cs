@@ -40,6 +40,7 @@
             this.txtFilter = new System.Windows.Forms.TextBox();
             this.comboBoxFilter = new System.Windows.Forms.ComboBox();
             this.lblFilter = new System.Windows.Forms.Label();
+            this.btnClearFilter = new System.Windows.Forms.Button();
             this.groupBoxBook.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.data_gridBook)).BeginInit();
             this.pnlFilterBook.SuspendLayout();
@@ -144,6 +145,7 @@
             // pnlFilterBook
             // 
             this.pnlFilterBook.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(130)))), ((int)(((byte)(150)))));
+            this.pnlFilterBook.Controls.Add(this.btnClearFilter);
             this.pnlFilterBook.Controls.Add(this.btnSearchFilter);
             this.pnlFilterBook.Controls.Add(this.txtFilter);
             this.pnlFilterBook.Controls.Add(this.comboBoxFilter);
@@ -164,9 +166,9 @@
             this.btnSearchFilter.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSearchFilter.Location = new System.Drawing.Point(416, 4);
             this.btnSearchFilter.Name = "btnSearchFilter";
-            this.btnSearchFilter.Size = new System.Drawing.Size(129, 35);
+            this.btnSearchFilter.Size = new System.Drawing.Size(116, 35);
             this.btnSearchFilter.TabIndex = 3;
-            this.btnSearchFilter.Text = "  Search";
+            this.btnSearchFilter.Text = "   Search";
             this.btnSearchFilter.UseVisualStyleBackColor = true;
             this.btnSearchFilter.Click += new System.EventHandler(this.btnSearchFilter_Click);
             // 
@@ -195,6 +197,22 @@
             this.lblFilter.Size = new System.Drawing.Size(36, 16);
             this.lblFilter.TabIndex = 0;
             this.lblFilter.Text = "Filter";
+            // 
+            // btnClearFilter
+            // 
+            this.btnClearFilter.FlatAppearance.BorderSize = 0;
+            this.btnClearFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClearFilter.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnClearFilter.ForeColor = System.Drawing.Color.White;
+            this.btnClearFilter.Image = ((System.Drawing.Image)(resources.GetObject("btnClearFilter.Image")));
+            this.btnClearFilter.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClearFilter.Location = new System.Drawing.Point(538, 4);
+            this.btnClearFilter.Name = "btnClearFilter";
+            this.btnClearFilter.Size = new System.Drawing.Size(106, 35);
+            this.btnClearFilter.TabIndex = 4;
+            this.btnClearFilter.Text = "Clear";
+            this.btnClearFilter.UseVisualStyleBackColor = true;
+            this.btnClearFilter.Click += new System.EventHandler(this.btnClearFilter_Click);
             // 
             // frmBook
             // 
@@ -227,5 +245,6 @@
         private System.Windows.Forms.ComboBox comboBoxFilter;
         private System.Windows.Forms.Label lblFilter;
         private System.Windows.Forms.Button btnSearchFilter;
+        private System.Windows.Forms.Button btnClearFilter;
     }
 }
