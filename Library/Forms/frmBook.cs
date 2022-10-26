@@ -107,7 +107,7 @@ namespace Library.Forms
 
         }
 
-        DataView Filter()
+        public void Filter()
         {
             string _sql = "SELECT * FROM Book ";
             var a = CRUD.CRUD.List(_sql);     //SQLİTE DAKİ VERİLERİ LİSTEYE AKTARMAK İSTİYORUZ (hangi türde gelceğini bilmediğimiz için var)
@@ -125,45 +125,16 @@ namespace Library.Forms
                 _bookList.Add(_book);
             }
 
-            Book bo = new Book();
-            bo = _bookList.Find(p => p.Book_name == txtFilter.Text && p.Author_Name == txtFilter.Text && p.Page == txtFilter.Text && p.Quote == txtFilter.Text ); 
+            List<Book> bo = new List<Book>();
+            string m = comboBoxFilter.Text;
+            //if (comboBoxFilter.Text = 0 )
+            //{
 
-            DataView dv = new DataView();
-            if (bo!=null)
-            {
-                if (comboBoxFilter.SelectedIndex == 0)  //page
-                {
-                    dv.RowFilter = "Book_Name like '" + txtFilter.Text + "%'  ";    //%sona koyduğum için baştan itibaren olanları getircek
-                    data_gridBook.DataSource = dv;
-                }
-                else if (comboBoxFilter.SelectedIndex == 1)  //quote
-                {
-                    dv.RowFilter = "Author_Name like '" + txtFilter.Text + "%'  ";
-                    data_gridBook.DataSource = dv;
-                }
-                else if (comboBoxFilter.SelectedIndex == 2)  //quote
-                {
-                    dv.RowFilter = "Page like '" + txtFilter.Text + "%'  ";
-                    data_gridBook.DataSource = dv;
-                }
-                else if (comboBoxFilter.SelectedIndex == 3)  //quote
-                {
-                    dv.RowFilter = "Quote like '" + txtFilter.Text + "%'  ";
-                    data_gridBook.DataSource = dv;
-                }
-                else
-                {
-                    MessageBox.Show("Nothing is matching!");
-                    UpdateBook();
-                }
-                
-            }
-            else
-            {
-                MessageBox.Show("Test");
-            }
+            //}
+            bo = _bookList.FindAll(p => p.Page.Contains(txtFilter.Text)).ToList();
 
-            return dv;
+            data_gridBook.DataSource=bo;
+
         }
 
         private void txtFilter_TextChanged(object sender, EventArgs e)
